@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <html ng-app="citiesApp">
     <head><title>Cities App</title>
@@ -77,4 +78,85 @@
     
     
 
+=======
+
+<html ng-app="citiesApp">
+    <head><title>Cities App</title>
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+            
+            li {
+                float: left;
+            }
+            
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            
+            li a:hover {
+                background-color: #111;
+            }
+
+            ul span {
+                float: right;
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            </style>
+</head>
+    <body ng-controller="indexController as indxCtrl">
+     
+        <body>
+
+            <ul>
+              <li><a class="active" href="#/">Home</a></li>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/poi">POI</a></li>
+              <li><a href="#/service">service</a></li>
+
+              <span ng-model="indxCtrl.userName">hello {{indxCtrl.userName}}</span>
+            </ul>
+            
+        <br>
+        <br>
+        <div  ng-view></div>
+
+        <img ng-src="http://2.bp.blogspot.com/-1D3ZYnPFJZE/VM0PgrciaJI/AAAAAAAAIl0/qYQXEOcRYr4/s1600/Free%2BAngularJS%2BEbooks.png" height="150px">
+
+
+    </div>
+
+        <script
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>       
+        <script src="app.js" ></script>
+        <script src="indexController.js" ></script>
+        <script src="components/About/aboutController.js" ></script>
+        <script src="components/POI/poiCtrl.js" ></script>
+        <script src="components/Services/serviceController.js" ></script>
+        <script src="components/Services/localStorageModel.js"></script>
+
+
+
+ 
+    </body>
+    </html>
+    
+    
+
+>>>>>>> c2a1de13652428244e2f5cbe2bb58d2fcb62822b
     
