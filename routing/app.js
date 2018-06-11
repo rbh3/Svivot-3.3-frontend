@@ -25,13 +25,3 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
 
         
 }]);
-
-
-
-
-
-
-
-
-
-
