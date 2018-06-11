@@ -1,4 +1,3 @@
-
 angular.module('citiesApp')
  .controller('poiCtrl', [function() {
  
