@@ -6,8 +6,7 @@ angular.module('citiesApp')
             $http.defaults.headers.common[ 'x-access-token' ] = t
             // $httpProvider.defaults.headers.post[ 'x-access-token' ] = token
             console.log("set")
-            
-        }
+           }
         }])
 
     .service('checkToken',['setHeadersToken','localStorageModel', function (setHeadersToken,localStorageModel) {
@@ -61,7 +60,7 @@ angular.module('citiesApp')
 
         self.login = function () {
             // register user
-            $http.post(serverUrl + "Users/authenticate", user2)
+            $http.post(serverUrl + "Users/authenticate",user2)
                 .then(function (response) {
                     if(response.data.message==="bad values"){
                         alert("can't login")
@@ -89,11 +88,6 @@ angular.module('citiesApp')
                     // self.reg.content = "Something went wrong";
                 });
         }
-
-      
-
-
-
     }]);
 
 
