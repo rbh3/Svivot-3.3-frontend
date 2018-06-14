@@ -17,9 +17,17 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: 'components/POI/poi.html',
             controller : 'poiCtrl as poiCtrl'
         })
-        .when('/service', {
-            templateUrl: 'components/Services/service.html',
-            controller : 'serviceController as srvCtrl'
+        .when('/Unregister', {
+            templateUrl: 'components/Unregister/Unregister.html',
+            controller : 'UnregisterController as unregCtrl'
+        })
+        .when('/Login', {
+            templateUrl: 'components/Login/Login.html',
+            controller : 'LoginController as loginCtrl'
+        })
+        .when('/reg', {
+            templateUrl: 'components/Login/reg.html',
+            controller : 'reg as regCtrl'
         })
         .otherwise({ redirectTo: '/' });
 

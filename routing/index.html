@@ -1,5 +1,5 @@
 <html ng-app="citiesApp">
-    <head><title>Cities App</title>
+    <head><title>Poi App</title>
         <style>
             ul {
                 list-style-type: none;
@@ -34,22 +34,24 @@
                 text-decoration: none;
             }
             </style>
+            
+     
 </head>
     <body ng-controller="indexController as indxCtrl">
             <ul>
               <li><a class="active" href="#/">Home</a></li>
-              <li><a href="#/about">About</a></li>
               <li><a href="#/poi">POI</a></li>
+              <li><a href="#/Unregister">Unregister</a></li>
               <li><a href="#/service">service</a></li>
+              <li><a href="#/about">About</a></li>
 
-              <span ng-model="indxCtrl.userName">hello {{indxCtrl.userName}}</span>
+
+              <span ng-model="indxCtrl.userName">Hello {{indxCtrl.userName}}</span>
             </ul>
             
         <br>
         <br>
         <div  ng-view></div>
-
-        <img ng-src="http://2.bp.blogspot.com/-1D3ZYnPFJZE/VM0PgrciaJI/AAAAAAAAIl0/qYQXEOcRYr4/s1600/Free%2BAngularJS%2BEbooks.png" height="150px">
 
     </div>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -59,8 +61,13 @@
         <script src="indexController.js" ></script>
         <script src="components/About/aboutController.js" ></script>
         <script src="components/POI/poiCtrl.js" ></script>
-        <script src="components/Services/serviceController.js" ></script>
-        <script src="components/Services/localStorageModel.js"></script>
+        <script src="shared/serviceController.js" ></script>
+        <script src="shared/localStorageModel.js"></script>
+        <script src="components/Unregister/UnregisterController.js"></script>
+        <script src="components/Login/LoginController.js"></script>
+        <script src="components/Login/reg.js"></script>
+        <script src="components/Login/forgot.js"></script>
+
 
     </body>
     </html>
