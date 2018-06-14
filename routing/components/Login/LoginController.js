@@ -34,7 +34,7 @@ angular.module('citiesApp')
   }
 
 
-  $scope.register=function(){
+  self.register=function(){
     $location.path('/reg')
   }
   
