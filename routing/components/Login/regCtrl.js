@@ -10,8 +10,8 @@ angular.module('citiesApp',)
           ];
         self.selectedCategories = [];
 
-        self.questions1 = ["What is the name of your first pet?", "What's your high-school name?"];
-        self.questions2 = ["What is the name of your grandmother (mother-side)?", "What is your favorite sport team?"];
+        self.questions1 = ["What is the name of your first pet?", "What is your high school name?"];
+        self.questions2 = ["What is the name of your grandmother?", "What is your favorite sport team?"];
 
         //XML countries
         var xmlhttp = new XMLHttpRequest();
@@ -69,8 +69,8 @@ angular.module('citiesApp',)
                         return
                     }
                     else if (response.status === 200) {
-                        alert(self.Username + " was succefully added!")
-                        $location.path("/Login")
+                        alert(self.Username + "  was succefully added!")
+                       // $location.path("/Login")
                         return
                     }
                     ///FORWORD TO POI PAGE!!!!

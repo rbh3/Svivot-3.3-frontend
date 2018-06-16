@@ -1,8 +1,8 @@
 angular.module('citiesApp')
 .controller('LoginController', ['$http','$scope','$location','setHeadersToken','localStorageModel',function($http,$scope,$location,setHeadersToken,localStorageModel) {
   let self=this;
-  $scope.questions1= ["What is the name of your first pet?", "What's your high-school name?"];
-  $scope.questions2= ["What is the name of your grandmother (mother-side)?","What is your favorite sport team?"];
+  $scope.questions1=  ["What is the name of your first pet?", "What is your high school name?"];
+  $scope.questions2=  ["What is the name of your grandmother?", "What is your favorite sport team?"];
 
   self.submitForm=function()
   {
