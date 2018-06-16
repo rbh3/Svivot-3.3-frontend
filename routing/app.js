@@ -7,7 +7,8 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
 
 
     $routeProvider.when('/', {
-        template: '<h1>This is the default route</h1>'
+        templateUrl: 'components/Unregister/Unregister.html',
+        controller : 'UnregisterController as unregCtrl'
     })
         .when('/about', {
             templateUrl: 'components/About/about.html',

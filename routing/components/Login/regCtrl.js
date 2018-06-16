@@ -1,9 +1,7 @@
 angular.module('citiesApp',)
-    .controller('regCtrl', ['$http', '$scope', '$location', 'setHeadersToken', 'localStorageModel', function ($http, $scope, $location, setHeadersToken, localStorageModel) {
+    .controller('regCtrl', ['$http',  '$location', 'setHeadersToken', 'localStorageModel', function ($http, $location, setHeadersToken, localStorageModel) {
         let self = this;
 
-
-        //self.cats = ["Shopping", "Nightclub", "Resturants", "Attractions"];
         self.cats = [
             {id: 1, text: 'Shopping'},
             {id: 2, text: 'Nightclub'},
@@ -71,7 +69,7 @@ angular.module('citiesApp',)
                         return
                     }
                     else if (response.status === 200) {
-                        alert(self.Username + "was succefully added!")
+                        alert(self.Username + " was succefully added!")
                         $location.path("/Login")
                         return
                     }
