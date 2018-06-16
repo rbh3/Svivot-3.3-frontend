@@ -27,7 +27,7 @@
   <!-- Fname -->
   <div class="form-group">
     <label>First name</label>
-    <input type="text" name="Fname" class="form-control" ng-model="regCtrl.Fname" required>
+    <input type="text" name="Fname" class="form-control" ng-model="regCtrl.Fname" ng-pattern="/^[a-zA-Z]*$/" required>
     <p ng-show="(registerForm.Fname.$dirty || submitted) && registerForm.Fname.$error.required">You must enter First Name</p>
   </div>
   <br/>
@@ -35,7 +35,7 @@
   <!-- Lname -->
   <div class="form-group">
     <label>Last name</label>
-    <input type="text" name="Lname" class="form-control" ng-model="regCtrl.Lname" required>
+    <input type="text" name="Lname" class="form-control" ng-model="regCtrl.Lname" ng-pattern="/^[a-zA-Z]*$/" required>
     <p ng-show="(registerForm.Lname.$dirty || submitted) && registerForm.Lname.$error.required">You must enter Last Name</p>
   </div>
   <br/>
