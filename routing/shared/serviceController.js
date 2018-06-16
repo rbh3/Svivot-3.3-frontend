@@ -7,6 +7,14 @@ angular.module('citiesApp')
             // $httpProvider.defaults.headers.post[ 'x-access-token' ] = token
             console.log("set")
            }
+           this.setUser = function (user) {
+                this.userName=user
+           }
+           this.get=function()
+           {
+               return this.userName
+           }
+           this.userName="Guest"
         }])
 
     .service('checkToken',['setHeadersToken','localStorageModel', function (setHeadersToken,localStorageModel) {

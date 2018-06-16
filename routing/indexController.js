@@ -1,8 +1,6 @@
 angular.module('citiesApp')
-    .controller('indexController',['setHeadersToken', function (setHeadersToken) {
+    .controller('indexController',['$scope','setHeadersToken', function ($scope,setHeadersToken) {
 
         self = this;
-
-        self.userName = setHeadersToken.userName
-
+        self.userName=setHeadersToken.get();
     }]);
