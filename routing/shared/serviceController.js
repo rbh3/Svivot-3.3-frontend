@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .service('setHeadersToken',[ '$http', function ($http) {
+    .service('setHeadersToken',[ '$http','$rootScope', function ($http,$rootScope) {
         let token = ""
         this.set = function (t) {
             token = t
@@ -8,13 +8,9 @@ angular.module('citiesApp')
             console.log("set")
            }
            this.setUser = function (user) {
-                this.userName=user
+                $rootScope.userName=user;
            }
-           this.get=function()
-           {
-               return this.userName
-           }
-           this.userName="Guest"
+           $rootScope.userName="Guest"
         }])
 
     .service('checkToken',['setHeadersToken','localStorageModel', function (setHeadersToken,localStorageModel) {
