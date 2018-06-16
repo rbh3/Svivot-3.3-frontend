@@ -1,9 +1,15 @@
-angular.module('citiesApp')
+angular.module('citiesApp',)
     .controller('regCtrl', ['$http', '$scope', '$location', 'setHeadersToken', 'localStorageModel', function ($http, $scope, $location, setHeadersToken, localStorageModel) {
         let self = this;
-        self.user = []
 
-        self.cats = ["Shopping", "Nightclub", "Resturants", "Attractions"];
+
+        //self.cats = ["Shopping", "Nightclub", "Resturants", "Attractions"];
+        self.cats = [
+            {id: 1, text: 'Shopping'},
+            {id: 2, text: 'Nightclub'},
+            {id: 3, text: 'Resturants'},
+            {id: 4, text: 'Attractions'}
+          ];
         self.selectedCategories = [];
 
         self.questions1 = ["What is the name of your first pet?", "What's your high-school name?"];
@@ -44,19 +50,21 @@ angular.module('citiesApp')
         }
 
         self.submitForm = function () {
-            self.user.Username = self.Username
-            self.user.Password = self.Password
-            self.user.Fname = self.Fname
-            self.user.Lname = self.Lname
-            self.user.City = self.City
-            self.user.Country = self.Country
-            self.user.Email = self.Email
-            self.user.categories = self.selectedCategories
-            self.user.Q1 = self.Q1
-            self.user.A1 = self.A1
-            self.user.Q2 = self.Q2
-            self.user.A2 = self.A2
-            $http.post("http://localhost:3000/users/", self.user)
+            let user = {
+                Username : self.Username,
+                Password : self.Password,
+                Fname : self.Fname,
+                Lname : self.Lname,
+                City : self.City,
+                Country : self.Country,
+                Email : self.Email,
+                categories : self.selectedCategories,
+                Q1 : self.Q1,
+                A1 : self.A1,
+                Q2 : self.Q2,
+                A2 : self.A2
+            }
+            $http.post("http://localhost:3000/users/", user)
                 .then(function (response) {
                     if (response.data === "Username already exists, please choose another") {
                         alert(response.data)
@@ -66,7 +74,7 @@ angular.module('citiesApp')
                         alert(self.Username + "was succefully added!")
                         $location.path("/Login")
                         return
-                    }                    
+                    }
                     ///FORWORD TO POI PAGE!!!!
                     //   $location.path('/reg')
 
