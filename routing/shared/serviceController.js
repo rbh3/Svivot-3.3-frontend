@@ -12,12 +12,6 @@ angular.module('citiesApp')
                 $rootScope.userName=user;
                 $rootScope.isConnected=true;
            }
-
-        this.setme = function () {
-            $rootScope.userName="Guest";
-           $rootScope.isConnected=false;
-            }
-
            $rootScope.userName="Guest";
            $rootScope.isConnected=false;
     }])
