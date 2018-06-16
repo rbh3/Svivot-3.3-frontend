@@ -70,12 +70,9 @@ angular.module('citiesApp',)
                     }
                     else if (response.status === 200) {
                         alert(self.Username + "  was succefully added!")
-                       // $location.path("/Login")
+                        $location.path("/Login")
                         return
                     }
-                    ///FORWORD TO POI PAGE!!!!
-                    //   $location.path('/reg')
-
                 }, function (response) {
                     //Second function handles error
                     alert("Something went wrong");
