@@ -74,14 +74,7 @@ angular.module('citiesApp')
             }
         }
 
-        self.register = function () {
-            $location.path('/reg')
-        }
-
-
-        self.Forgot = function () {
-            $location.path('/forgot')
-        }
+        
 
 
     }]);
