@@ -1,6 +1,7 @@
 
   
   <div class="page-header"><h1>Login</h1></div>
+
   <!-- pass in the variable if our form is valid or invalid -->
   <form name="userForm" ng-submit="loginCtrl.submitForm(userForm.$valid)" novalidate>
 
@@ -27,3 +28,45 @@
 
 <button  ng-click="loginCtrl.Forgot()">Forgot Password</button>
 <button  ng-click="loginCtrl.register()">Not a member?</button>
+
+<div id="forgot-page" style="display: none;">
+
+    <div class="page-header"><h4>Please Answer on all fields below:</h4></div>
+
+    <form name="forgetForm" ng-submit="loginCtrl.submitForgetForm(forgetForm.$valid)" novalidate>
+
+        <!-- USERNAME -->
+        <div class="form-group" >
+               <label>Username:</label>
+               <input type="text" id="user" name="username" class="form-control" ng-model="loginCtrl.forgotuser.Username" required ng-minlength="3" ng-maxlength="8" ng-pattern="/^[a-zA-Z]*$/">
+               <p ng-show="(forgetForm.username.$dirty || submitted) && forgetForm.username.$error.required">You must enter Username.</p>
+               <p ng-show="forgetForm.username.$error.pattern || forgetForm.username.$error.minlength || forgetForm.username.$error.maxlength">Your username need to 3-8 letters ONLY!</p>
+           </div>
+   <br/>
+         <!-- Q1 -->
+         <div class="form-group"   >
+             <label>Choose the first questions:</label>
+             <select id="q1" ng-model="loginCtrl.forgotuser.Q1" ng-change="loginCtrl.mySelect()">
+                <option ng-repeat="x in questions1" ng->{{x}}</option>
+            </select>
+             <input type="text" id="a1" name="a1" class="form-control" ng-model="loginCtrl.forgotuser.A1" required ng-minlength="1" />
+         </div>
+       <br/>
+
+         
+       <!-- Q2 -->
+       <div class="form-group" >
+          <label>Choose the second questions:</label>
+          <select id="q2" ng-model="loginCtrl.forgotuser.Q2"  ng-change="loginCtrl.mySelect()">
+             <option ng-repeat="x in questions2">{{x}}</option>
+         </select>
+          <input type="text" id="a2" name="a2" class="form-control" ng-model="loginCtrl.forgotuser.A2" required ng-minlength="1"  />
+      </div>
+    <br/>
+
+         <button type="submit" ng-disabled="forgetForm.$invalid ">Submit</button>
+     </form>
+
+</div>
+
+

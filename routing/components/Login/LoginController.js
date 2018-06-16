@@ -1,6 +1,8 @@
 angular.module('citiesApp')
 .controller('LoginController', ['$http','$scope','$location','setHeadersToken','localStorageModel',function($http,$scope,$location,setHeadersToken,localStorageModel) {
   let self=this;
+  $scope.questions1= ["What is the name of your first pet?", "What's your high-school name?"];
+  $scope.questions2= ["What is the name of your grandmother (mother-side)?","What is your favorite sport team?"];
 
   self.submitForm=function()
   {
@@ -10,7 +12,7 @@ angular.module('citiesApp')
       }
       $http.post("http://localhost:3000/users/authenticate",self.user)
       .then(function (response) {
-        if(response.data.success==="bad values"){
+        if(response.data==="bad values"){
             alert("can't login")
             return
         }
@@ -21,9 +23,12 @@ angular.module('citiesApp')
         //First function handles success
         tok=response.data.token
         setHeadersToken.set(tok)
+        setHeadersToken.setUser(self.user.userName)
         localStorageModel.addLocalStorage('token', tok)
 
-        ///FORWORD TO REG PAGE!!!!
+        ///FORWORD TO POI PAGE!!!!
+     //   $location.path('/reg')
+
 
 
     }, function (response) {
@@ -39,10 +44,36 @@ angular.module('citiesApp')
   }
   
 
-  self.Forgot=function()
-  {
-    $location.path('/forgot')
+  self.Forgot=function() {
+    var x = document.getElementById("forgot-page");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+    document.getElementById("a2").value=""
+    document.getElementById("a1").value=""
+    document.getElementById("user").value=""
   }
 
-
+  self.submitForgetForm=function()
+  {
+      $http.post("http://localhost:3000/users/retrievePassword",self.forgotuser)
+      .then(function (response) {
+        if(response.data==="Not Found")
+          alert("Failed to retrive password, data mismatched")
+        else if(response.data==="user not found")
+        {
+          alert("User not found")
+        }else
+        {
+          alert("Your password is: " +response.data)
+        }
+        self.Forgot();
+    }, function (response) {
+        //Second function handles error
+        alert("Something went wrong");
+        return
+    });
+  }
 }]);
