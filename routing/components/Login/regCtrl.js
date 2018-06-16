@@ -1,44 +1,13 @@
 angular.module('citiesApp')
     .controller('regCtrl', ['$http', '$scope', '$location', 'setHeadersToken', 'localStorageModel', function ($http, $scope, $location, setHeadersToken, localStorageModel) {
         let self = this;
+        self.user = []
 
         self.cats = ["Shopping", "Nightclub", "Resturants", "Attractions"];
         self.selectedCategories = [];
 
         self.questions1 = ["What is the name of your first pet?", "What's your high-school name?"];
         self.questions2 = ["What is the name of your grandmother (mother-side)?", "What is your favorite sport team?"];
-
-        self.submitForm = function () {
-            if (self.user.Username === "" || self.user.Password === "") {
-                return
-            }
-            $http.post("http://localhost:3000/users/", self.user)
-                .then(function (response) {
-                    if (response.data === "Username already exists, please choose another") {
-                        alert("different user")
-                        return
-                    }
-                    if (response.data === 200) {
-                        //alert(response.data.message)
-                        alert("good registration")
-                        return
-                    }
-                    //First function handles success
-                    /*
-                    tok=response.data.token
-                    setHeadersToken.set(tok)
-                    localStorageModel.addLocalStorage('token', tok)
-                    */
-
-                    ///FORWORD TO REG PAGE!!!!
-
-
-                }, function (response) {
-                    //Second function handles error
-                    alert("Something went wrong");
-                    return
-                });
-        }
 
         //XML countries
         var xmlhttp = new XMLHttpRequest();
@@ -74,7 +43,39 @@ angular.module('citiesApp')
             }
         }
 
-        
+        self.submitForm = function () {
+            self.user.Username = self.Username
+            self.user.Password = self.Password
+            self.user.Fname = self.Fname
+            self.user.Lname = self.Lname
+            self.user.City = self.City
+            self.user.Country = self.Country
+            self.user.Email = self.Email
+            self.user.categories = self.selectedCategories
+            self.user.Q1 = self.Q1
+            self.user.A1 = self.A1
+            self.user.Q2 = self.Q2
+            self.user.A2 = self.A2
+            $http.post("http://localhost:3000/users/", self.user)
+                .then(function (response) {
+                    if (response.data === "Username already exists, please choose another") {
+                        alert(response.data)
+                        return
+                    }
+                    else if (response.status === 200) {
+                        alert(self.Username + "was succefully added!")
+                        $location.path("/Login")
+                        return
+                    }                    
+                    ///FORWORD TO POI PAGE!!!!
+                    //   $location.path('/reg')
+
+                }, function (response) {
+                    //Second function handles error
+                    alert("Something went wrong");
+                    return
+                });
+        }
 
 
     }]);
