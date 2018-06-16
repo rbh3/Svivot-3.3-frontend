@@ -72,11 +72,18 @@
     <label>Select at least 2 categories you are interesed in:</label>
     <br>
     <label ng-repeat="cat in regCtrl.cats">
-        <input type="checkbox"
-          ng-click="regCtrl.chooseCat(cat)"
-          ng-checked="regCtrl.categories.indexOf(cat) > -1"
-          /> 
-          {{cat}}</label>
+      <input type="checkbox" ng-click="regCtrl.chooseCat(cat)" ng-checked="regCtrl.categories.indexOf(cat) > -1" /> {{cat}}
+    </label>
+  </div>
+  <br/>
+
+  <!-- Q1 -->
+  <div class="form-group">
+    <label>Choose the first validation questions:</label>
+    <select id="q1" ng-model="regCtrl.user.Q1">
+      <option ng-repeat="x in regCtrl.questions1">{{x}}</option>
+    </select>
+    <input type="text" id="a1" name="a1" class="form-control" ng-model="regCtrl.user.A1" required ng-minlength="1" />
   </div>
   <br/>
 
