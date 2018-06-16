@@ -1,9 +1,12 @@
 angular.module('citiesApp')
     .controller('regCtrl', ['$http', '$scope', '$location', 'setHeadersToken', 'localStorageModel', function ($http, $scope, $location, setHeadersToken, localStorageModel) {
         let self = this;
-        
+
         self.cats = ["Shopping", "Nightclub", "Resturants", "Attractions"];
         self.selectedCategories = [];
+
+        self.questions1 = ["What is the name of your first pet?", "What's your high-school name?"];
+        self.questions2 = ["What is the name of your grandmother (mother-side)?", "What is your favorite sport team?"];
 
         self.submitForm = function () {
             if (self.user.Username === "" || self.user.Password === "") {
@@ -59,15 +62,15 @@ angular.module('citiesApp')
             self.Countries = cntrs;
         }
         //End of XML countries
-        
+
         //At least 2 categories
-        this.chooseCat = function(cat){
+        this.chooseCat = function (cat) {
             var index = self.selectedCategories.indexOf(cat);
-            if(index == -1) {
-              self.selectedCategories.push(cat);
+            if (index == -1) {
+                self.selectedCategories.push(cat);
             }
-            else{
-              self.selectedCategories.splice(index, 1);
+            else {
+                self.selectedCategories.splice(index, 1);
             }
         }
 
