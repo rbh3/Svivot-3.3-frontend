@@ -41,10 +41,9 @@
             <ul>
               <li><a class="active" href="#/">Home</a></li>
               <li><a href="#/poi">POI</a></li>
-              <li><a href="#/Unregister">Unregister</a></li>
-              <li><a href="#/service">service</a></li>
               <li><a href="#/about">About</a></li>
-
+              <li><a ng-if="!$root.isConnected" href="#/Login">Login</a></li>
+              <li><a ng-if="$root.isConnected" ng-click="indxCtrl.reset()" href="#/">Logout</a></li>
 
               <span>Hello {{$root.userName}} </span>
             </ul>
