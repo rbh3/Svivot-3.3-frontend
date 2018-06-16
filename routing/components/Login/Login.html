@@ -46,8 +46,8 @@
          <!-- Q1 -->
          <div class="form-group"   >
              <label>Choose the first questions:</label>
-             <select id="q1" ng-model="loginCtrl.forgotuser.Q1" ng-change="loginCtrl.mySelect()">
-                <option ng-repeat="x in questions1" ng->{{x}}</option>
+             <select id="q1" ng-model="loginCtrl.forgotuser.Q1">
+                <option ng-repeat="x in questions1">{{x}}</option>
             </select>
              <input type="text" id="a1" name="a1" class="form-control" ng-model="loginCtrl.forgotuser.A1" required ng-minlength="1" />
          </div>
@@ -57,7 +57,7 @@
        <!-- Q2 -->
        <div class="form-group" >
           <label>Choose the second questions:</label>
-          <select id="q2" ng-model="loginCtrl.forgotuser.Q2"  ng-change="loginCtrl.mySelect()">
+          <select id="q2" ng-model="loginCtrl.forgotuser.Q2">
              <option ng-repeat="x in questions2">{{x}}</option>
          </select>
           <input type="text" id="a2" name="a2" class="form-control" ng-model="loginCtrl.forgotuser.A2" required ng-minlength="1"  />
