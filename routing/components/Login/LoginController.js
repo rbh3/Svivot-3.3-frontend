@@ -27,7 +27,7 @@ angular.module('citiesApp')
         localStorageModel.addLocalStorage('token', tok)
 
         ///FORWORD TO POI PAGE!!!!
-     //   $location.path('/reg')
+        $location.path('/')
 
 
 

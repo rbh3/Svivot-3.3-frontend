@@ -1,12 +1,9 @@
-<h1> Welcome </h1>
-<h2>You are not connected.<br/> To enjoy the features in out site we recommend to login/register</h2>
-
-<div ng-init="unregCtrl.get3rand()">
+<div ng-if="!$root.isConnected" ng-init="unregCtrl.get3rand()">
+    <center>
+            <h1> Welcome </h1>
+            <h2>You are not connected.<br/> To enjoy the features in out site we recommend to login/register</h2>
+            <button ng-style="{'height': '100px', 'width': '300px'}" ng-click="unregCtrl.signUp()">Login</button>
     <table>
-        <tr>
-            <td ><button ng-style="{'height': '100px', 'width': '300px'}" ng-click="unregCtrl.signUp()">Login</button></td>
-        </tr>
-        
         <tr>
             <td ng-repeat="random in unregCtrl.random">
                 <br/><br/><br/><center>
@@ -16,6 +13,40 @@
             </td>
         </tr>
     </table>
-    
+    </center>
 
+</div>
+
+
+<div ng-if="$root.isConnected" ng-init="unregCtrl.getreg()">
+    <center>
+    <table style="border-spacing: 2em">
+        <tr>
+            <td>
+                    <img src="/assets/img/pop.jpg" height="300px" width="300px"/>
+            </td>
+            <td>
+                    <img src="https://sacredmargins.files.wordpress.com/2014/09/bigstock-like-love-favorite-36977998.jpg?w=285&h=300" height="300px" width="300px"/>
+
+            </td>
+        </tr>
+        <tr ng-repeat="popular in unregCtrl.popular">
+                <td>
+                    <center>    
+                                <span ng-bind="popular.Name"></span></center>
+                                <br/>
+                                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{popular.Picture}}"/>
+                </td>
+                <td ng-if=unregCtrl.haveFav>
+                        <center>
+                                <span ng-if=unregCtrl.haveFav ng-bind="unregCtrl.fav[$index].Name"></span></center>
+                                <br/>
+                                <img ng-if=unregCtrl.haveFav ng-style="{'height': '300px','width':'300px'}" ng-src="{{unregCtrl.fav[$index].Picture}}"/>
+                </td>
+                <td ng-if=!unregCtrl.haveFav>
+                        <center>
+                                <img ng-if=!unregCtrl.haveFav ng-style="{'height': '330px','width':'300px'}" ng-src="/assets/img/nofav.jpg"/>
+                </td>
+        </tr>
+    </table></center>
 </div>
