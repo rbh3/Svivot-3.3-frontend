@@ -1,30 +1,33 @@
 angular.module("citiesApp")
-    .service('localStorageModel', ['localStorageService', function(localStorageService) {
+    .service('localStorageModel', ['localStorageService', function (localStorageService) {
 
-        var self=this;
+        var self = this;
 
         self.addLocalStorage = function (key, value) {
             var dataVal = localStorageService.get(key);
             console.log(dataVal)
-            if (!dataVal)
-            if (localStorageService.set(key, value)) {
-                console.log("data added")
+            if (!dataVal) {
+                if (localStorageService.set(key, value)) {
+                    console.log("data added")
+                }
+                else
+                    console.log('failed to add the data');
             }
             else
-                console.log('failed to add the data');
+                self.updateLocalStorage(key,value)
         }
 
-
-
-        self.getLocalStorage= function (key)
-        {
-           return  localStorageService.get(key)
+        self.removeToken=function(key){
+            localStorageService.remove(key)
         }
 
-        self.updateLocalStorage = function (key,value)
-        {
+        self.getLocalStorage = function (key) {
+            return localStorageService.get(key)
+        }
+
+        self.updateLocalStorage = function (key, value) {
             localStorageService.remove(key);
-            localStorageService.set(key,value);
+            localStorageService.set(key, value);
         }
 
 

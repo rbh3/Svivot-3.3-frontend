@@ -1,9 +1,13 @@
 angular.module('citiesApp')
-    .controller('indexController',['$rootScope', function ($rootScope) {
+    .controller('indexController',['$rootScope','checkToken', function ($rootScope,checkToken) {
 
         self = this;
         $rootScope.userName="Guest"
         $rootScope.isConnected=false;
+
+        self.load=function(){
+            checkToken.check();
+        }
 
         self.reset=function(){
            $rootScope.userName="Guest"
