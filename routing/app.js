@@ -14,7 +14,11 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: 'components/About/about.html',
             controller : 'aboutController as abtCtrl'
         })
-        .when('/poi', {
+        .when('/poi/name/:name?', {
+            templateUrl: 'components/POI/poi.html',
+            controller : 'poiCtrl as poiCtrl'
+        })
+        .when('/poi/id/:id?', {
             templateUrl: 'components/POI/poi.html',
             controller : 'poiCtrl as poiCtrl'
         })

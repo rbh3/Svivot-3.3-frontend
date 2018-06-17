@@ -7,9 +7,9 @@
         <tr>
             <td ng-repeat="random in unregCtrl.random">
                 <br/><br/><br/><center>
-                        <span ng-bind="random.Name"></span></center>
+                        <span ng-bind="random.Name" ng-click="unregCtrl.goTo(random.Name)"></span></center>
                         <br>
-                        <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{random.Picture}}"/>
+                        <img ng-style="{'height': '300px','width':'300px'}" ng-click="unregCtrl.goTo(random.Name)") ng-src="{{random.Picture}}"/>
             </td>
         </tr>
     </table>
@@ -33,15 +33,15 @@
         <tr ng-repeat="popular in unregCtrl.popular">
                 <td>
                     <center>    
-                                <span ng-bind="popular.Name"></span></center>
+                                <span  ng-bind="popular.Name"  ng-click="unregCtrl.goTo(popular.Name)"></span></center>
                                 <br/>
-                                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{popular.Picture}}"/>
+                                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{popular.Picture}}"  ng-click="unregCtrl.goTo(popular.Name)"/>
                 </td>
                 <td ng-if=unregCtrl.haveFav>
                         <center>
-                                <span ng-if=unregCtrl.haveFav ng-bind="unregCtrl.fav[$index].Name"></span></center>
+                                <span ng-if=unregCtrl.haveFav ng-bind="unregCtrl.fav[$index].Name" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].Name)"></span></center>
                                 <br/>
-                                <img ng-if=unregCtrl.haveFav ng-style="{'height': '300px','width':'300px'}" ng-src="{{unregCtrl.fav[$index].Picture}}"/>
+                                <img ng-if=unregCtrl.haveFav ng-style="{'height': '300px','width':'300px'}" ng-src="{{unregCtrl.fav[$index].Picture}}" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].Name)"/>
                 </td>
                 <td ng-if=!unregCtrl.haveFav>
                         <center>

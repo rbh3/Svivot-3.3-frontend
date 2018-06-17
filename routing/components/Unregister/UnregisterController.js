@@ -54,4 +54,8 @@ angular.module('citiesApp')
     self.signUp=function(){
       $location.path('/Login')
     }
+
+    self.goTo=function(name){
+        $location.path('/poi/name/'+name)
+    }
   }]);
