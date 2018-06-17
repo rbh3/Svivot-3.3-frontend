@@ -7,9 +7,9 @@
         <tr>
             <td ng-repeat="random in unregCtrl.random">
                 <br/><br/><br/><center>
-                        <span style="cursor: pointer;" ng-bind="random.Name" ng-click="unregCtrl.goTo(random.Name)"></span></center>
+                        <span style="cursor: pointer;" ng-bind="random.Name" ng-click="unregCtrl.goTo(random.ID)"></span></center>
                         <br>
-                        <img style="cursor: pointer;" ng-style="{'height': '300px','width':'300px'}" ng-click="unregCtrl.goTo(random.Name)") ng-src="{{random.Picture}}"/>
+                        <img style="cursor: pointer;" ng-style="{'height': '300px','width':'300px'}" ng-click="unregCtrl.goTo(random.ID)") ng-src="{{random.Picture}}"/>
             </td>
         </tr>
     </table>
@@ -33,15 +33,15 @@
         <tr ng-repeat="popular in unregCtrl.popular">
                 <td>
                     <center>    
-                                <span style="cursor: pointer;" ng-bind="popular.Name"  ng-click="unregCtrl.goTo(popular.Name)"></span></center>
+                                <span style="cursor: pointer;" ng-bind="popular.Name"  ng-click="unregCtrl.goTo(popular.ID)"></span></center>
                                 <br/>
-                                <img style="cursor: pointer;" ng-style="{'height': '300px','width':'300px'}" ng-src="{{popular.Picture}}"  ng-click="unregCtrl.goTo(popular.Name)"/>
+                                <img style="cursor: pointer;" ng-style="{'height': '300px','width':'300px'}" ng-src="{{popular.Picture}}"  ng-click="unregCtrl.goTo(popular.ID)"/>
                 </td>
                 <td ng-if=unregCtrl.haveFav>
                         <center>
-                                <span style="cursor: pointer;" ng-if=unregCtrl.haveFav ng-bind="unregCtrl.fav[$index].Name" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].Name)"></span></center>
+                                <span style="cursor: pointer;" ng-if=unregCtrl.haveFav ng-bind="unregCtrl.fav[$index].Name" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].ID)"></span></center>
                                 <br/>
-                                <img style="cursor: pointer;" ng-if=unregCtrl.haveFav ng-style="{'height': '300px','width':'300px'}" ng-src="{{unregCtrl.fav[$index].Picture}}" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].Name)"/>
+                                <img style="cursor: pointer;" ng-if=unregCtrl.haveFav ng-style="{'height': '300px','width':'300px'}" ng-src="{{unregCtrl.fav[$index].Picture}}" ng-click="unregCtrl.goTo(unregCtrl.fav[$index].ID)"/>
                 </td>
                 <td ng-if=!unregCtrl.haveFav>
                         <center>

@@ -56,6 +56,6 @@ angular.module('citiesApp')
     }
 
     self.goTo=function(name){
-        $location.path('/poi/name/'+name)
+        $location.path('/poi/id/'+name)
     }
   }]);
