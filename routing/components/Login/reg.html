@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="page-header" ng-init="regCtrl.getXMLcountries()">
   <h1>Registration</h1>
 </div>
 
@@ -56,7 +56,7 @@
   <!-- Country -->
   <div class="form-group">
     <label>Country</label>
-    <select name="Country" ng-model="regCtrl.Country" required>
+    <select name="Country" ng-model="regCtrl.Country" required autofocus>
       <option ng-repeat="x in regCtrl.Countries">{{x}}</option>
     </select>
     <p ng-show="(registerForm.Country.$dirty || submitted) && registerForm.Country.$error.required">You must enter Country</p>

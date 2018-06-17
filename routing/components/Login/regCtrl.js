@@ -1,5 +1,5 @@
 angular.module('citiesApp',)
-    .controller('regCtrl', ['$http',  '$location', 'setHeadersToken', 'localStorageModel', function ($http, $location, setHeadersToken, localStorageModel) {
+    .controller('regCtrl', ['$http','$rootScope',  '$location', 'setHeadersToken', 'localStorageModel', function ($http,$rootScope, $location, setHeadersToken, localStorageModel) {
         let self = this;
 
         self.cats = [
@@ -14,19 +14,9 @@ angular.module('citiesApp',)
         self.questions2 = ["What is the name of your grandmother?", "What is your favorite sport team?"];
 
         //XML countries
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                self.getXMLcountries(this);
-            }
-        };
-
-        xmlhttp.open("GET", "./countries.xml", true);
-        xmlhttp.send();
-
-        self.getXMLcountries = function (xml) {
+        self.getXMLcountries = function () {
             var i;
-            var xmlDoc = xml.responseXML;
+            var xmlDoc = $rootScope.myXML.responseXML;
             var cntrs = [];
             var x = xmlDoc.getElementsByTagName("Country");
             for (i = 0; i < x.length; i++) {
