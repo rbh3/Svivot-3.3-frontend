@@ -10,7 +10,7 @@ angular.module('citiesApp')
                     self.POI = response.data;
 
                 }, function (response) {
-                    self.random = response.data
+                    self.POI = response.data
                     //Second function handles error
                     // self.reg.content = "Something went wrong";
                 });
