@@ -16,6 +16,7 @@ angular.module('citiesApp')
                     //First function handles success
                     self.POI = response.data;
                     self.POI_cat = self.cats[(self.POI.CategoryID)-1].text;
+                    self.POI_date = self.POI.Date;
                 }, function (response) {
                     self.POI = response.data;
                     //Second function handles error
