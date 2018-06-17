@@ -1,7 +1,29 @@
 <table>
         <div ng-init="poiCtrl.getPOIbyID()">
-                <p>
-                        POI.Name                        
-                </p>
+                <div style="font-size: 30px; font-weight: bold">
+                        {{poiCtrl.POI.Name}}
+                </div>
+                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{poiCtrl.POI.Picture}}"/>
+                <div>
+                        <b>Description:</b> {{poiCtrl.POI.Description}}
+                </div>
+                <div ng-init="poiCtrl.getPOIbyID()">
+                        <b>Category:</b> {{poiCtrl.POI_cat}}
+                </div>
+                <div>
+                        <b>Rank:</b> {{poiCtrl.POI.Rank}}%
+                </div>
+                <div>
+                        <b>How many users watched this:</b> {{poiCtrl.POI.UsersWatching}}
+                </div>
+                <div>
+                        <b>Reviews:</b>
+                        
+                        </br>
+                        1. <b>Rank:</b> {{poiCtrl.POI.Reviews[0].Rank}} out of 5
+                        </br>
+                        <b>Review body:</b> {{poiCtrl.POI.Reviews[0].body}}
+                                
+                </div>
         </div>
 </table>
