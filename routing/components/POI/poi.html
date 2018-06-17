@@ -20,7 +20,7 @@
                         <b>How many users watched this:</b> {{poiCtrl.POI.UsersWatching}}
                 </div>
         </br>
-                <div>
+                <div ng-if="poiCtrl.POI_revs.length>0">
                         <b>Recent reviews:</b>
                         <ul ng-repeat="rev in poiCtrl.POI_revs">
                                 <li>"{{rev.body}}"</li>
@@ -32,5 +32,8 @@
                                 </ul>
                         </ul>
                 </div>
+                <div ng-if="poiCtrl.POI_revs.length==0">
+                                <b>No reviews yet.</b>  </div>
+                
         </div>
 </table>
