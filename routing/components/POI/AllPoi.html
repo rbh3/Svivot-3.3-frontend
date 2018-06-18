@@ -1,0 +1,39 @@
+<br/>
+<br/>
+
+<table ng-init="poiCtrl.init()">
+        <div ng-init="poiCtrl.getPOI()">
+                <div style="font-size: 30px; font-weight: bold">
+                        {{poiCtrl.POI.Name}}
+                </div>
+                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{poiCtrl.POI.Picture}}" />
+                <div>
+                        <b>Description:</b> {{poiCtrl.POI.Description}}
+                </div>
+                <div>
+                        <b>Category:</b> {{poiCtrl.POI_cat}}
+                </div>
+                <div>
+                        <b>Rank:</b> {{poiCtrl.POI.Rank}}%
+                </div>
+                <div>
+                        <b>How many users watched this:</b> {{poiCtrl.POI.UsersWatching}}
+                </div>
+        </br>
+                <div ng-if="poiCtrl.POI_revs.length>0">
+                        <b>Recent reviews:</b>
+                        <ul ng-repeat="rev in poiCtrl.POI_revs">
+                                <li>"{{rev.body}}"</li>
+                                <ul>
+                                        <li>
+                                                <b>Rank: </b> {{rev.Rank}} out of 5</li>
+                                        <li>
+                                                <b>Date posted: </b>{{rev.Date}}</li>
+                                </ul>
+                        </ul>
+                </div>
+                <div ng-if="poiCtrl.POI_revs.length==0">
+                                <b>No reviews yet.</b>  </div>
+                
+        </div>
+</table>

@@ -5,7 +5,7 @@
     <body ng-controller="indexController as indxCtrl">
             <div class="scrollmenu">
                     <a class="active" href="#/">Home</a>
-                    <a href="#/poi">POI</a>
+                    <a href="#/Poi">POI</a>
                     <a href="#/about">About</a>
                     <a ng-if="!$root.isConnected" href="#/Login">Login</a>
                     <a ng-if="$root.isConnected" ng-click="indxCtrl.reset()" href="#/">Logout</a>
@@ -24,6 +24,7 @@
         <script src="indexController.js" ></script>
         <script src="components/About/aboutController.js" ></script>
         <script src="components/POI/poiCtrl.js" ></script>
+        <script src="components/POI/AllPoiCtr.js" ></script>
         <script src="shared/serviceController.js" ></script>
         <script src="shared/localStorageModel.js"></script>
         <script src="components/Unregister/UnregisterController.js"></script>
