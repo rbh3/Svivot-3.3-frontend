@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('indexController',['$rootScope', function ($rootScope) {
+    .controller('indexController',['$rootScope','localStorageModel','setHeadersToken', function ($rootScope,localStorageModel,setHeadersToken) {
 
         self = this;
         $rootScope.userName="Guest"
@@ -7,7 +7,9 @@ angular.module('citiesApp')
 
         self.reset=function(){
            $rootScope.userName="Guest"
-           $rootScope.isConnected=false;
+           $rootScope.isConnected=false
+           localStorageModel.removeToken('token')
+           setHeadersToken.set("")
         }
 
         var xmlhttp = new XMLHttpRequest();

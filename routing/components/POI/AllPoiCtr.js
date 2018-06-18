@@ -1,29 +1,49 @@
 angular.module('citiesApp')
-    .controller('poiCtrl', ['$routeParams', '$http','checkToken', function ($routeParams, $http,checkToken) {
+    .controller('AllPoiCtr', ['$routeParams', '$http','checkToken','$location','$rootScope', function ($routeParams, $http,checkToken,$location,$rootScope) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
-        
+        self.PicSelected="/assets/img/unlike.JPG"
+        $rootScope.localFav=[];
+
         self.init=function(){
             checkToken.check();
+            if($rootScope.isConnected==true)
+            {
+                $http.get(serverUrl + "POI/reg/FavoritesByUsername/0")
+                .then(function (response) {
+                    //First function handles success
+                    temp = response.data;
+                    for(var i=0; i<temp.length;i++)
+                        $rootScope.localFav.push(temp[i].ID);
+                }, function (response) {
+                    self.POI = response.data;
+                    //Second function handles error
+                    // self.reg.content = "Something went wrong";
+                });
+            }
         }
+        self.x = 4;
 
-        self.cats = [
-            { id: 1, text: 'Shopping' },
-            { id: 2, text: 'Nightclub' },
-            { id: 3, text: 'Resturants' },
-            { id: 4, text: 'Attractions' }
-        ];
-
-        self.getPOIbyID = function (id) {
-            $http.get(serverUrl + "POI/getPOIbyID/"+id)
+        self.arr = [];        
+      
+        self.getColumns = function() {
+      
+          return new Array(self.x)
+      
+        }
+      
+        self.getRows = function() {
+      
+          return new Array(Math.ceil((self.arr.length) / self.x))
+      
+        }
+      
+        self.getAllPoi = function (id) {
+            $http.get(serverUrl + "POI/getAllPOI/")
                 .then(function (response) {
                     //First function handles success
                     self.POI = response.data;
-                    self.POI_cat = self.cats[(self.POI.CategoryID)-1].text;
-                    self.POI_revs = self.POI.Reviews;
-                    for (var i=0; i<self.POI_revs.length; i++)
-                        self.POI_revs[i].Date = self.POI_revs[i].Date.substring(0, 10);
-
+                    self.arr=self.POI
                 }, function (response) {
                     self.POI = response.data;
                     //Second function handles error
@@ -31,31 +51,27 @@ angular.module('citiesApp')
                 });
         }
 
-        self.getPOIbyName = function (name) {
-            $http.get(serverUrl + "POI/getPOIbyName/"+name)
-                .then(function (response) {
-                    //First function handles success
-                    self.POI = response.data[0];
-                    self.POI_cat = self.cats[(self.POI.CategoryID)-1].text;
-                    self.POI_revs = self.POI.Reviews;
-                    for (var i=0; i<self.POI_revs.length; i++)
-                        self.POI_revs[i].Date = self.POI_revs[i].Date.substring(0, 10);
-
-                }, function (response) {
-                    self.POI = response.data;
-                    //Second function handles error
-                    // self.reg.content = "Something went wrong";
-                });
+        self.goTo=function(name){
+            $location.path('/poi/id/'+name)
         }
 
-        self.getPOI = function()  {
-                if($routeParams.name)
-                    self.getPOIbyName($routeParams.name)
-                    else if ($routeParams.id)
-                    self.getPOIbyID($routeParams.id)
-
+        self.checkifFav=function(name){
+            if($rootScope.localFav.includes(name))
+                return true;
+            else
+                return false;
         }
 
-
+        self.saveFav=function(name){
+           if($rootScope.localFav.includes(name))
+           {
+                let i=localFav.indexOf(name);
+                if(i>-1)
+                    $rootScope.localFav.splice(i,1);
+           }
+           else{
+                $rootScope.localFav.push(name);
+           }
+        }
 
     }]);

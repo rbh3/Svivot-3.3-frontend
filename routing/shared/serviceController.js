@@ -27,6 +27,7 @@ angular.module('citiesApp')
                 if(response.data.message==='Failed to authenticate token.')
                 {
                     localStorageModel.removeToken('token')
+                    setHeadersToken.set("")
                     $rootScope.userName="Guest"
                     $rootScope.isConnected=false;
                     $location.path("/")

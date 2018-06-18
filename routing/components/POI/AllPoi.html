@@ -1,39 +1,19 @@
 <br/>
 <br/>
-
-<table ng-init="poiCtrl.init()">
-        <div ng-init="poiCtrl.getPOI()">
-                <div style="font-size: 30px; font-weight: bold">
-                        {{poiCtrl.POI.Name}}
-                </div>
-                <img ng-style="{'height': '300px','width':'300px'}" ng-src="{{poiCtrl.POI.Picture}}" />
-                <div>
-                        <b>Description:</b> {{poiCtrl.POI.Description}}
-                </div>
-                <div>
-                        <b>Category:</b> {{poiCtrl.POI_cat}}
-                </div>
-                <div>
-                        <b>Rank:</b> {{poiCtrl.POI.Rank}}%
-                </div>
-                <div>
-                        <b>How many users watched this:</b> {{poiCtrl.POI.UsersWatching}}
-                </div>
-        </br>
-                <div ng-if="poiCtrl.POI_revs.length>0">
-                        <b>Recent reviews:</b>
-                        <ul ng-repeat="rev in poiCtrl.POI_revs">
-                                <li>"{{rev.body}}"</li>
-                                <ul>
-                                        <li>
-                                                <b>Rank: </b> {{rev.Rank}} out of 5</li>
-                                        <li>
-                                                <b>Date posted: </b>{{rev.Date}}</li>
-                                </ul>
-                        </ul>
-                </div>
-                <div ng-if="poiCtrl.POI_revs.length==0">
-                                <b>No reviews yet.</b>  </div>
-                
-        </div>
-</table>
+<center ng-init="AllPoiCtr.init()">
+<table ng-init="AllPoiCtr.getAllPoi()">
+                <tr ng-repeat="i in AllPoiCtr.getRows() track by $index" ng-init="idx = $index">
+                  <td ng-repeat="c in AllPoiCtr.getColumns() track by $index" ng-init="idy=$index">
+                                <div style="cursor: pointer;font-size: 17px; font-weight: bold" ng-click="AllPoiCtr.goTo(AllPoiCtr.arr[(idx*4)+idy].ID)">
+                                                {{AllPoiCtr.arr[(idx*4)+idy].Name}}
+                                        </div>
+                                        <img ng-style="{'height': '350px','width':'350px','cursor':'pointer'}" ng-click="AllPoiCtr.goTo(AllPoiCtr.arr[(idx*4)+idy].ID)" ng-src="   {{AllPoiCtr.arr[(idx*4)+idy].Picture}}" />
+                                        <div>
+                                                <br/>
+                                                <b>Rank:</b>    {{AllPoiCtr.arr[(idx*4)+idy].Rank}}%    <b ng-if="$root.isConnected" ng-style="{'padding-left':'150px'}">Favorite:</b><img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}" ng-click="AllPoiCtr.saveFav(AllPoiCtr.arr[(idx*4)+idy].ID)" ng-show="!AllPoiCtr.checkifFav(AllPoiCtr.arr[(idx*4)+idy].ID)" />
+                                                <img src="/assets/img/like.png" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}" ng-click="AllPoiCtr.saveFav(AllPoiCtr.arr[(idx*4)+idy].ID)" ng-show="AllPoiCtr.checkifFav(AllPoiCtr.arr[(idx*4)+idy].ID)" />
+                                        </div>
+                                        <br/>
+                                     </td>
+                </tr>
+</table></center>
