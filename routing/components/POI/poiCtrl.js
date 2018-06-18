@@ -1,7 +1,11 @@
 angular.module('citiesApp')
-    .controller('poiCtrl', ['$routeParams', '$http', function ($routeParams, $http) {
+    .controller('poiCtrl', ['$routeParams', '$http','checkToken', function ($routeParams, $http,checkToken) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
+        
+        self.init=function(){
+            checkToken.check();
+        }
 
         self.cats = [
             { id: 1, text: 'Shopping' },

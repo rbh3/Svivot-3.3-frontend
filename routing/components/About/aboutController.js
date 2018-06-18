@@ -1,7 +1,6 @@
 angular.module('citiesApp')
-.controller('aboutController', ['$scope', function($scope) {
-    $scope.count = 0;
-    $scope.myFunc = function() {
-      $scope.count++;
-    };
+.controller('aboutController', ['$scope','checkToken', function($scope,checkToken) {
+    this.init=function(){
+      checkToken.check();
+  }
   }]);

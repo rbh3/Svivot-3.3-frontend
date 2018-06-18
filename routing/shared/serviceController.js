@@ -17,22 +17,29 @@ angular.module('citiesApp')
            $rootScope.isConnected=false;
     }])
 
-    .service('checkToken',['$scope','$location','$http','setHeadersToken','localStorageModel', function ($http,$scope,$location,setHeadersToken,localStorageModel) {
-        this.check=function(){
+    .service('checkToken',['$location','$http','setHeadersToken','localStorageModel','$rootScope', function ($location,$http,setHeadersToken,localStorageModel,$rootScope) {
+        this.check= function(){
         let token=localStorageModel.getLocalStorage('token');
-        if(token!=null)
+        if(token!=null){
         //needs to check experation date
              setHeadersToken.set(token)
-             $http.get("http://localhost:3000/POI/reg/").then(function(response){
+             $http.get("http://localhost:3000/POI/reg/authToken/"+token).then(function(response){
                 if(response.data.message==='Failed to authenticate token.')
                 {
                     localStorageModel.removeToken('token')
-                    $scope.indexCtrl.reset();
-                    $location.path("#/")
+                    $rootScope.userName="Guest"
+                    $rootScope.isConnected=false;
+                    $location.path("/")
+                }
+                else if(response.data.message==='Success')
+                {
+                    setHeadersToken.setUser(response.data.payload.userName)
                 }
              })
             }
+        
         console.log("HYYYYYY")
+        }
         }])
 
 

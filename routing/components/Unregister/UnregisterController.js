@@ -1,8 +1,11 @@
 angular.module('citiesApp')
-.controller('UnregisterController', ['$location','$http', function($location,$http) {
+.controller('UnregisterController', ['$location','checkToken','$http', function($location,checkToken,$http) {
     let self=this;
     let serverUrl = 'http://localhost:3000/'
     
+    self.init=function(){
+        checkToken.check();
+    }
     
     self.get3rand=function(){
       $http.get(serverUrl + "POI/Random3")

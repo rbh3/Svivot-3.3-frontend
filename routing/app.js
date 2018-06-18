@@ -34,7 +34,7 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: 'components/Login/reg.html',
             controller : 'regCtrl as regCtrl'
         })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/routing/components/Unregister/Unregister.html' });
 
         
 }]);
