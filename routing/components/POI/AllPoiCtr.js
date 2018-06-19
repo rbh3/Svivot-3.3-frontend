@@ -72,7 +72,7 @@ angular.module('citiesApp')
         self.saveFav=function(name){
            if($rootScope.localFav.includes(name))
            {
-                let i=localFav.indexOf(name);
+                let i=$rootScope.localFav.indexOf(name);
                 if(i>-1)
                     $rootScope.localFav.splice(i,1);
            }

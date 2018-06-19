@@ -1,0 +1,51 @@
+<br/>
+<center ng-init="AllPoiCtr.init()">
+        <div class="btn-toolbar">
+                <select ng-model="chooseFilter" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
+                        <option value="">No-Filter</option>
+                        <option ng-repeat="x in AllPoiCtr.cats" >{{x.text}}</option>
+                </select>
+                <b>Order By:</b>
+                <select ng-model="chooseFilter" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
+                        <option value="">No-Filter</option>
+                        <option ng-repeat="x in AllPoiCtr.cats" >{{x.text}}</option>
+                </select>
+                <button type="button" id="btnCancel" class="btn btn-primary btn-sm">Sort By Rank</button>
+                <button ng-show="$root.isConnected" class="btn btn-primary btn-sm"> Favorits List ({{$root.localFav.length}})</button>
+        </div>
+
+        <br/>
+
+        <div ng-init="AllPoiCtr.getAllPoi()" class="panel">
+                <div class="panel-body">
+                        <div class="row">
+                                <div ng-repeat="poi in AllPoiCtr.POI | filter: {CategoryID: AllPoiCtr.getCatID(chooseFilter)}">
+                                        <div class="col-sm-3">
+                                                <div style="cursor: pointer;font-size: 17px; font-weight: bold" ng-click="AllPoiCtr.goTo(poi.ID)">
+                                                        {{poi.Name}}
+
+                                                </div>
+                                                <img ng-style="{'height': '350px','width':'350px','cursor':'pointer'}" ng-click="AllPoiCtr.goTo(poi.ID)" ng-src="   {{poi.Picture}}"
+                                                />
+                                                <div>
+                                                        <br/>
+
+                                                        <b>Rank:</b> {{poi.Rank}}%
+                                                        <b ng-style="{'padding-left':'10px'}">Category: </b>{{AllPoiCtr.getCatName(poi.CategoryID)}}
+                                                        <b ng-if="$root.isConnected" ng-style="{'padding-left':'10px'}">Favorite:</b>
+                                                        <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
+                                                                ng-click="AllPoiCtr.saveFav(poi.ID)" ng-show="!AllPoiCtr.checkifFav(poi.ID)"
+                                                        />
+                                                        <img src="/assets/img/like.png" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
+                                                                ng-click="AllPoiCtr.saveFav(AllPoiCtr.arr[(idx*4)+idy].ID)" ng-show="AllPoiCtr.checkifFav(poi.ID)"
+                                                        />
+                                                        <br/>
+                                                </div>
+                                                <br/>
+                                        </div>
+                                </div>
+
+                        </div>
+                </div>
+        </div>
+</center>
