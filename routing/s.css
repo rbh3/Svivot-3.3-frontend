@@ -7,7 +7,21 @@ body {
 {
     margin-top:5%;
 }
+
+button
+{
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);    
+}
 div.scrollmenu {
+    z-index: 100;
     background-color: #333;
     overflow: hidden;
     top: 0;
@@ -31,3 +45,9 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
     background-color: #777;
 }
+
+table {
+    border-collapse: separate; 
+    border-spacing: 1em
+}
+
