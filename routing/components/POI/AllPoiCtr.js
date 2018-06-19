@@ -4,9 +4,20 @@ angular.module('citiesApp')
         let serverUrl = 'http://localhost:3000/'
         self.PicSelected="/assets/img/unlike.JPG"
         $rootScope.localFav=[];
+        self.chooseFilter="No-Filter"
+
+        self.cats = [
+            { id: 1, text: 'Shopping' },
+            { id: 2, text: 'Nightclub' },
+            { id: 3, text: 'Resturants' },
+            { id: 4, text: 'Attractions' }
+        ];
+
+
 
         self.init=function(){
             checkToken.check();
+            
             if($rootScope.isConnected==true)
             {
                 $http.get(serverUrl + "POI/reg/FavoritesByUsername/0")
@@ -21,21 +32,6 @@ angular.module('citiesApp')
                     // self.reg.content = "Something went wrong";
                 });
             }
-        }
-        self.x = 4;
-
-        self.arr = [];        
-      
-        self.getColumns = function() {
-      
-          return new Array(self.x)
-      
-        }
-      
-        self.getRows = function() {
-      
-          return new Array(Math.ceil((self.arr.length) / self.x))
-      
         }
       
         self.getAllPoi = function (id) {
@@ -62,6 +58,17 @@ angular.module('citiesApp')
                 return false;
         }
 
+        self.getCatName=function(name){
+            return self.cats[name-1].text
+        }
+
+        self.getCatID=function(mycat){
+            if(self.cats.filter(cat => cat.text === mycat)[0]) 
+                return self.cats.filter(cat => cat.text === mycat)[0].id
+            else
+                return undefined
+        }
+
         self.saveFav=function(name){
            if($rootScope.localFav.includes(name))
            {
@@ -70,8 +77,7 @@ angular.module('citiesApp')
                     $rootScope.localFav.splice(i,1);
            }
            else{
-                $rootScope.localFav.push(name);
+                $rootScope.localFav.push(name); 
            }
         }
-
     }]);

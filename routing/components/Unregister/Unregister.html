@@ -4,7 +4,7 @@
             <h1> Welcome </h1>
             <h2>You are not connected.<br/> To enjoy the features in out site we recommend to login/register</h2>
             <button ng-style="{'height': '100px', 'width': '300px'}" ng-click="unregCtrl.signUp()">Login</button>
-    <table>
+    <table style="border-collapse: separate; border-spacing: 1em">
         <tr>
             <td ng-repeat="random in unregCtrl.random">
                 <br/><br/><br/><center>
@@ -21,7 +21,7 @@
 
 <div ng-if="$root.isConnected" ng-init="unregCtrl.getreg()">
     <center>
-    <table style="border-spacing: 2em">
+    <table style="border-collapse: separate; border-spacing: 1em">
         <tr>
             <td>
                     <img src="/assets/img/pop.jpg" height="300px" width="300px"/>
