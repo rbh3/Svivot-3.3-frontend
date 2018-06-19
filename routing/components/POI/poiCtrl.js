@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('poiCtrl', ['$routeParams','$location', '$http', 'checkToken', function ($routeParams, $location, $http, checkToken) {
+    .controller('poiCtrl', ['$routeParams', '$route', '$location', '$http', 'checkToken', function ($routeParams, $route, $location, $http, checkToken) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
 
@@ -68,12 +68,11 @@ angular.module('citiesApp')
                 .then(function (response) {
                     if (response.data === "Review Added") {
                         alert(response.data)
-                        document.getElementById('id01').style.display='none'
-                        $location.path('/poi/id/' + $routeParams.id)
+                        $route.reload()
                     }
                     else if (response.data === "The same review from this user exists") {
                         alert(response.data)
-                        return
+                        document.getElementById('id01').style.display='none'
                     }
                 }, function (response) {
                     //Second function handles error
