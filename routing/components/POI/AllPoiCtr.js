@@ -51,6 +51,10 @@ angular.module('citiesApp')
             $location.path('/poi/id/'+name)
         }
 
+        self.goFav=function(name){
+            $location.path('/fav')
+        }
+
         self.checkifFav=function(name){
             if($rootScope.localFav.includes(name))
                 return true;

@@ -34,9 +34,8 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: 'components/Login/reg.html',
             controller : 'regCtrl as regCtrl'
         })
-
         .when('/fav', {
-            templateUrl: 'components/Login/FavPage.html',
+            templateUrl: 'components/Favorites/FavPage.html',
             controller : 'FavCtrl as FavCtrl'
         })
         .when('/Poi', {
