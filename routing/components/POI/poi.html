@@ -19,7 +19,7 @@
                 <div>
                         <b>How many users watched this:</b> {{poiCtrl.POI.UsersWatching}}
                 </div>
-        </br>
+                </br>
                 <div ng-if="poiCtrl.POI_revs.length>0">
                         <b>Recent reviews:</b>
                         <ul ng-repeat="rev in poiCtrl.POI_revs">
@@ -33,7 +33,41 @@
                         </ul>
                 </div>
                 <div ng-if="poiCtrl.POI_revs.length==0">
-                                <b>No reviews yet.</b>  </div>
-                
+                        <b>No reviews yet.</b>
+                </div>
+
         </div>
 </table>
+</br>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-container">
+        <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Add your review</button>
+
+        <div id="id01" class="w3-modal">
+                <div class="w3-modal-content">
+                        <div class="w3-container">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                <form name="reviewForm" ng-submit="poiCtrl.submitForm(reviewForm.$valid)" novalidate>
+                                        </br>
+                                        <div class="form-group">
+                                                <label>Rank</label>
+                                                <select name="ReviewRank" ng-model="poiCtrl.ReviewRank" required autofocus>
+                                                        <option ng-repeat="x in poiCtrl.posblRank">{{x}}</option>
+                                                </select>
+                                                <p ng-show="(reviewForm.ReviewRank.$dirty || submitted) && reviewForm.ReviewRank.$error.required">You must enter Rank</p>
+                                        </div>
+                                        </br>
+
+                                        <div class="form-group">
+                                                <label>Review body</label>
+                                                <input type="text" name="ReviewBody" class="form-control" ng-model="poiCtrl.ReviewBody">
+                                        </div>
+                                        </br>
+                                        <button type="submit" ng-disabled="reviewForm.$invalid">Add Review</button>
+                                </form>
+                        </div>
+                </div>
+        </div>
+</div>
