@@ -5,7 +5,7 @@
                         <option value="">No-Filter</option>
                         <option ng-repeat="x in AllPoiCtr.cats" >{{x.text}}</option>
                 </select>
-                <button type="button" id="btnCancel" class="btn btn-primary btn-sm">Sort By Rank</button>
+                <button type="button" id="btnCancel" ng-click="AllPoiCtr.sortByRank()" class="btn btn-primary btn-sm">Sort By Rank</button>
                 <button ng-show="$root.isConnected" ng-hide="$root.localFav.length==0" class="btn btn-primary btn-sm" ng-click="AllPoiCtr.goFav()"> Favorits List ({{$root.localFav.length}})</button>
         </div>
 
@@ -14,7 +14,7 @@
         <div ng-init="AllPoiCtr.getAllPoi()" class="panel">
                 <div class="panel-body">
                         <div class="row">
-                                <div ng-repeat="poi in AllPoiCtr.POI | filter: {CategoryID: AllPoiCtr.getCatID(chooseFilter)}">
+                                <div ng-repeat="poi in AllPoiCtr.POI | filter: {CategoryID: AllPoiCtr.getCatID(chooseFilter)} | orderBy:AllPoiCtr.sortValue">
                                         <div class="col-sm-3">
                                                 <div style="cursor: pointer;font-size: 17px; font-weight: bold" ng-click="AllPoiCtr.goTo(poi.ID)">
                                                         {{poi.Name}}
