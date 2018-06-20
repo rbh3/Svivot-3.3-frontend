@@ -42,7 +42,7 @@ app.config(['$locationProvider', '$routeProvider', function($locationProvider, $
             templateUrl: 'components/POI/AllPoi.html',
             controller : 'AllPoiCtr as AllPoiCtr'
         })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/Unregister' });
 
         
 }]);
