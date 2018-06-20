@@ -58,4 +58,25 @@ angular.module('citiesApp')
             let i = $rootScope.localFav.findIndex(x => x.ID === id)
             return i;
         }
+
+        self.savtoDB=function()
+        {
+            $http.post("http://localhost:3000/users/retrievePassword",self.forgotuser)
+            .then(function (response) {
+              if(response.data==="Not Found")
+                alert("Failed to retrive password, data mismatched")
+              else if(response.data==="user not found")
+              {
+                alert("User not found")
+              }else
+              {
+                alert("Your password is: " +response.data)
+              }
+              self.Forgot();
+          }, function (response) {
+              //Second function handles error
+              alert("Something went wrong");
+              return
+          });
+        }
     }]);
