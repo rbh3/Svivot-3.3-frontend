@@ -25,7 +25,6 @@ angular.module('citiesApp')
         setHeadersToken.set(tok)
         setHeadersToken.setUser(self.user.userName)
         localStorageModel.addLocalStorage('token', tok)
-        bringFavorites.importFav();
 
         ///FORWORD TO POI PAGE!!!!
         $location.path('/')

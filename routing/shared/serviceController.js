@@ -49,9 +49,12 @@ angular.module('citiesApp')
             $http.get("http://localhost:3000/POI/reg/FavoritesByUsername/0")
                 .then(function (response) {
                     //First function handles success
+                    if(response.data==="No Favorite")
+                        return;
                     temp = response.data;
-                    for (var i = 0; i < temp.length; i++)
+                    for (var i = 0; i < temp.length; i++){
                         $rootScope.localFav.push(temp[i]);
+                    }
                 }, function (response) {
                     self.POI = response.data;
                     //Second function handles error

@@ -17,6 +17,13 @@ angular.module('citiesApp')
 
         self.init = function () {
             checkToken.check();
+            self.myOrderFav = {}
+            if ($rootScope.localFav) {
+                for (var i = 0; i < $rootScope.localFav.length; i++) {
+                    var poi=$rootScope.localFav[i];
+                    self.myOrderFav[poi] = i;
+                }
+            }
         }
 
         self.goTo = function (name) {
@@ -46,8 +53,10 @@ angular.module('citiesApp')
         self.saveFav = function (name) {
             if ($rootScope.localFav.filter(value => value.ID == name.ID).length > 0) {
                 let i = $rootScope.localFav.findIndex(x => x.ID === name.ID)
-                if (i > -1)
+                if (i > -1) {
                     $rootScope.localFav.splice(i, 1);
+                    delete self.myOrderFav[name]
+                }
             }
             else {
                 $rootScope.localFav.push(name);
@@ -59,24 +68,17 @@ angular.module('citiesApp')
             return i;
         }
 
-        self.savtoDB=function()
-        {
-            $http.post("http://localhost:3000/users/retrievePassword",self.forgotuser)
-            .then(function (response) {
-              if(response.data==="Not Found")
-                alert("Failed to retrive password, data mismatched")
-              else if(response.data==="user not found")
-              {
-                alert("User not found")
-              }else
-              {
-                alert("Your password is: " +response.data)
-              }
-              self.Forgot();
-          }, function (response) {
-              //Second function handles error
-              alert("Something went wrong");
-              return
-          });
+        self.savtoDB = function () {
+            $http.post("http://localhost:3000/POI/reg/storeFav", $rootScope.localFav)
+                .then(function (response) {
+                    if (response.data === "Favorite list Updated") {
+                        alert("Favorite list Updated")
+                    }
+                }, function (response) {
+                    //Second function handles error
+                    alert("Something went wrong");
+                    return
+                });
         }
+
     }]);
