@@ -10,7 +10,7 @@ angular.module('citiesApp')
         self.posblRank = [1, 2, 3, 4, 5]
 
         self.checkifFav=function(name){
-            if($rootScope.localFav.length>0){
+            if($rootScope.localFav.length>0 && name){
             if($rootScope.localFav.filter(value=> value.ID==name.ID).length > 0)
                 return true;
             else
