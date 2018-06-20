@@ -31,10 +31,10 @@
                                                         <b ng-style="{'padding-left':'8px'}">Category: </b>{{AllPoiCtr.getCatName(poi.CategoryID)}}
                                                         <b ng-if="$root.isConnected" ng-style="{'padding-left':'8px'}">Favorite:</b>
                                                         <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
-                                                                ng-click="AllPoiCtr.saveFav(poi.ID)" ng-show="!AllPoiCtr.checkifFav(poi.ID)"
+                                                                ng-click="AllPoiCtr.saveFav(poi)" ng-show="!AllPoiCtr.checkifFav(poi)"
                                                         />
                                                         <img src="/assets/img/like.png" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
-                                                                ng-click="AllPoiCtr.saveFav(poi.ID)" ng-show="AllPoiCtr.checkifFav(poi.ID)"
+                                                                ng-click="AllPoiCtr.saveFav(poi)" ng-show="AllPoiCtr.checkifFav(poi)"
                                                         />
                                                         <br/>
                                                 </div>

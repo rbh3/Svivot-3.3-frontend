@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-.controller('LoginController', ['$http','$scope','$location','setHeadersToken','localStorageModel',function($http,$scope,$location,setHeadersToken,localStorageModel) {
+.controller('LoginController', ['$http','$scope','$location','setHeadersToken','localStorageModel','bringFavorites',function($http,$scope,$location,setHeadersToken,localStorageModel,bringFavorites) {
   let self=this;
   $scope.questions1=  ["What is the name of your first pet?", "What is your high school name?"];
   $scope.questions2=  ["What is the name of your grandmother?", "What is your favorite sport team?"];
@@ -25,6 +25,7 @@ angular.module('citiesApp')
         setHeadersToken.set(tok)
         setHeadersToken.setUser(self.user.userName)
         localStorageModel.addLocalStorage('token', tok)
+        bringFavorites.importFav();
 
         ///FORWORD TO POI PAGE!!!!
         $location.path('/')
