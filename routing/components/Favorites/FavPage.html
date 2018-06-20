@@ -27,10 +27,11 @@
                                 <th scope="col">Category</th>
                                 <th scope="col">Views</th>
                                 <th scope="col">Picture</th>
+                                <th scope="col">My sort</th>
                         </tr>
                 </thead>
                 <tbody>
-                        <tr ng-repeat="poi in FavCtrl.getFav() | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue:true">
+                        <tr ng-repeat="poi in FavCtrl.getFav() | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue:true  ">
                                 <th scope="row">{{FavCtrl.loc(poi.ID)}}</th>
                                 <td>
                                         <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
@@ -47,6 +48,7 @@
                                         <img ng-style="{'height': '170px','width':'180px','cursor':'pointer'}" ng-click="FavCtrl.goTo(poi.ID)"
                                                 ng-src="   {{poi.Picture}}" />
                                 </td>
+                                <td></td>
                         </tr>
                 </tbody>
         </table>
