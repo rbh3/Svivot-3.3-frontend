@@ -6,7 +6,11 @@
                         <option value="">No-Filter</option>
                         <option ng-repeat="x in FavCtrl.cats">{{x.text}}</option>
                 </select>
-                <button type="button" id="btnCancel" ng-click="FavCtrl.sortByRank()" class="btn btn-primary btn-sm">Sort By Rank</button>
+                <b>Order By:</b>
+                <select ng-model="FavCtrl.sortValue" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
+                        <option value="">No Sort</option>
+                        <option value="Rank">Rank</option>
+                </select>
                 <button class="btn btn-primary btn-sm" ng-click="FavCtrl.savtoDB()">Save Favorites</button>
         </div>
 
@@ -25,7 +29,7 @@
                         </tr>
                 </thead>
                 <tbody>
-                        <tr ng-repeat="poi in $root.localFav | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue">
+                        <tr ng-repeat="poi in $root.localFav | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue:true">
                                 <th scope="row"><input style="color: white"  type="number" min="0" max="{{$root.localFav.length-1}}" value="{{FavCtrl.getIn(poi.ID)}}" ng-change="move(poi.ID,favCon)" ng-model="favCon" onkeypress="return false" /></th>
                                 <td>
                                         <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
