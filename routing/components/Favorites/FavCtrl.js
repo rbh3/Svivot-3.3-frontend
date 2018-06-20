@@ -21,7 +21,7 @@ angular.module('citiesApp')
             if ($rootScope.localFav) {
                 for (var i = 0; i < $rootScope.localFav.length; i++) {
                     var poi=$rootScope.localFav[i];
-                    self.myOrderFav[poi] = i;
+                    self.myOrderFav[poi.ID] = i;
                 }
             }
         }
@@ -55,11 +55,12 @@ angular.module('citiesApp')
                 let i = $rootScope.localFav.findIndex(x => x.ID === name.ID)
                 if (i > -1) {
                     $rootScope.localFav.splice(i, 1);
-                    delete self.myOrderFav[name]
+                    delete self.myOrderFav[name.ID]
                 }
             }
             else {
                 $rootScope.localFav.push(name);
+                self.myOrderFav[name.ID]=$rootScope.localFav.length;
             }
         }
 
@@ -69,7 +70,12 @@ angular.module('citiesApp')
         }
 
         self.savtoDB = function () {
-            $http.post("http://localhost:3000/POI/reg/storeFav", $rootScope.localFav)
+            if(!$rootScope.localFav)
+                return;
+            favorites=[];
+            for(let i=0;i<$rootScope.localFav.length;i++)
+                favorites.push($rootScope.localFav[i].ID)
+            $http.post("http://localhost:3000/POI/reg/storeFav", favorites)
                 .then(function (response) {
                     if (response.data === "Favorite list Updated") {
                         alert("Favorite list Updated")
