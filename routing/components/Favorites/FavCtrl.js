@@ -75,7 +75,7 @@ angular.module('citiesApp')
             favorites=[];
             for(let i=0;i<$rootScope.localFav.length;i++)
                 favorites.push($rootScope.localFav[i].ID)
-            $http.post("http://localhost:3000/POI/reg/storeFav", favorites)
+            $http.post("http://localhost:3000/POI/reg/storeFav", {favorites: favorites})
                 .then(function (response) {
                     if (response.data === "Favorite list Updated") {
                         alert("Favorite list Updated")
