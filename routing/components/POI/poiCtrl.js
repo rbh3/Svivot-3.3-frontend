@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('poiCtrl', ['$routeParams', '$route', '$location', '$http', 'checkToken', function ($routeParams, $route, $location, $http, checkToken) {
+    .controller('poiCtrl', ['$routeParams', '$rootScope', '$route', '$location', '$http', 'checkToken', function ($routeParams, $rootScope, $route, $location, $http, checkToken) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
 
@@ -8,6 +8,27 @@ angular.module('citiesApp')
         }
 
         self.posblRank = [1, 2, 3, 4, 5]
+
+        self.checkifFav=function(name){
+            if($rootScope.localFav.length>0){
+            if($rootScope.localFav.filter(value=> value.ID==name.ID).length > 0)
+                return true;
+            else
+                return false;
+            }
+        }
+
+        self.saveFav=function(name){
+            if($rootScope.localFav.filter(value=> value.ID==name.ID).length > 0)
+           {
+                let i=$rootScope.localFav.findIndex(x => x.ID === name.ID) 
+                if(i>-1)
+                    $rootScope.localFav.splice(i,1);
+           }
+           else{
+                $rootScope.localFav.push(name); 
+           }
+        }
 
         self.cats = [
             { id: 1, text: 'Shopping' },
