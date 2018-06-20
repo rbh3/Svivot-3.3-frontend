@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('FavCtrl', ['$http', 'checkToken', '$location', '$rootScope','$scope', function ($http, checkToken, $location, $rootScope,$scope) {
+    .controller('FavCtrl', ['$http', 'checkToken', '$location', '$rootScope','$scope','$route', function ($http, checkToken, $location, $rootScope,$scope,$route) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
         self.PicSelected = "/assets/img/unlike.JPG"
@@ -90,8 +90,10 @@ angular.module('citiesApp')
         
         $scope.move=function(id,number)
         {
+            if(number==$rootScope.localFav.length || number== -1)
+                return;
             for(var key in self.myOrderFav)
-                if(self.myOrderFav[key]===number)
+                if(self.myOrderFav[key]==number)
                     self.myOrderFav[key]=self.myOrderFav[id];
             self.myOrderFav[id]=number;
             var NewFav=[];
@@ -103,6 +105,7 @@ angular.module('citiesApp')
 
             }
             $rootScope.localFav=NewFav;
+            $route.reload();
         }
 
         self.getIn=function(id){
