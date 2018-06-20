@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('FavCtrl', ['$routeParams', '$http', 'checkToken', '$location', '$rootScope', function ($routeParams, $http, checkToken, $location, $rootScope) {
+    .controller('FavCtrl', ['$http', 'checkToken', '$location', '$rootScope','$scope', function ($http, checkToken, $location, $rootScope,$scope) {
         let self = this;
         let serverUrl = 'http://localhost:3000/'
         self.PicSelected = "/assets/img/unlike.JPG"
@@ -87,4 +87,50 @@ angular.module('citiesApp')
                 });
         }
 
+        
+        $scope.move=function(id,number)
+        {
+            for(var key in self.myOrderFav)
+                if(self.myOrderFav[key]===number)
+                    self.myOrderFav[key]=self.myOrderFav[id];
+            self.myOrderFav[id]=number;
+            var NewFav=[];
+            for (let i=0;i<$rootScope.localFav.length;i++)
+            {
+                var poID=self.getPOIidByLoc(i);
+                var poi=self.getLocalPOI(poID);
+                NewFav.push(poi);
+
+            }
+            $rootScope.localFav=NewFav;
+        }
+
+        self.getIn=function(id){
+            for(var i=0;i<$rootScope.localFav.length;i++)
+            {
+                if($rootScope.localFav[i].ID==id)
+                    return i;
+            }
+        }
+
+        self.getLocalPOI=function(id)
+        {
+            for(var i=0;i<$rootScope.localFav.length;i++)
+                {
+                    var ID=$rootScope.localFav[i].ID;
+                    if(ID==id)
+                        return $rootScope.localFav[i];
+                }
+        }
+
+        self.getPoz=function(id){
+            if(self.myOrderFav)
+                return self.myOrderFav[id];
+        }
+
+        self.getPOIidByLoc=function(item){
+               for(var key in self.myOrderFav)
+                    if(self.myOrderFav[key]===item)
+                        return key;
+        }
     }]);

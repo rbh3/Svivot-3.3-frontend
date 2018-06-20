@@ -9,7 +9,7 @@
                 <b>Order By:</b>
                 <select ng-model="FavCtrl.sortValue" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
                         <option value="">No Sort</option>
-                        <option value="-poz">My Order</option>
+                        <option value="`">My Order</option>
                         <option value="Rank">Rank</option>
                 </select>
                 <button class="btn btn-primary btn-sm" ng-click="FavCtrl.savtoDB()">Save Favorites</button>
@@ -30,8 +30,8 @@
                         </tr>
                 </thead>
                 <tbody>
-                        <tr ng-repeat="poi in $root.localFav | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue:true">
-                                <th scope="row"><input type="number" min="0"  max="{{$root.localFav.length}}" value="{{FavCtrl.loc(poi.ID)}}" onkeydown="return false" /></th>
+                        <tr ng-repeat="poi in $root.localFav | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue">
+                                <th scope="row"><input style="color:white" type="number" min="0" max="{{$root.localFav.length-1}}" value="{{FavCtrl.getIn(poi.ID)}}" ng-change="move(poi.ID,favCon)" ng-model="favCon" onkeypress="return false" /></th>
                                 <td>
                                         <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
                                                 ng-click="FavCtrl.saveFav(poi)" ng-show="!FavCtrl.checkifFav(poi)" />
@@ -44,8 +44,7 @@
                                 <td>{{poi.CategoryID}}</td>
                                 <td>{{poi.UsersWatching}}</td>
                                 <td>
-                                        <img ng-style="{'height': '170px','width':'180px','cursor':'pointer'}" ng-click="FavCtrl.goTo(poi.ID)"
-                                                ng-src="   {{poi.Picture}}" />
+                                        <img ng-style="{'height': '170px','width':'180px','cursor':'pointer'}" ng-click="FavCtrl.goTo(poi.ID)" ng-src="{{poi.Picture}}" />
                                 </td>
                         </tr>
                 </tbody>
