@@ -12,7 +12,8 @@ angular.module('citiesApp')
             { id: 4, text: 'Attractions' }
         ];
 
-
+        //self.sortValue = '';
+        //self.sortByRank = function () {self.sortValue = '-Rank'; }
 
         self.init=function(){
             checkToken.check();

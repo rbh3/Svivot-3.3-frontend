@@ -1,51 +1,53 @@
 <br/>
 <center ng-init="FavCtrl.init()">
         <div class="btn-toolbar">
+                <b>Filter By:</b>
                 <select ng-model="chooseFilter" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
                         <option value="">No-Filter</option>
                         <option ng-repeat="x in FavCtrl.cats">{{x.text}}</option>
                 </select>
                 <b>Order By:</b>
-                <select ng-model="chooseOrderBy" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
+                <select ng-model="FavCtrl.sortValue" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
                         <option value="">No Sort</option>
                         <option value="myOrder">My Order</option>
                         <option value="Rank">Rank</option>
-                        <option ng-repeat="x in FavCtrl.cats" >{{x.text}}</option>
                 </select>
                 <button class="btn btn-primary btn-sm">Save Favorites</button>
         </div>
 
         <br/>
-                <table ng-init="FavCtrl.getAllPoi()" class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Favorite</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Desciption</th>
-                            <th scope="col">Rank</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Views</th>
-                            <th scope="col">Picture</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr ng-repeat="poi in FavCtrl.getFav() | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)}">
-                            <th scope="row">{{FavCtrl.loc(poi.ID)}}</th>
-                            <td><img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
-                                ng-click="FavCtrl.saveFav(poi.ID)" ng-show="!FavCtrl.checkifFav(poi.ID)"
-                        />
-                        <img src="/assets/img/like.png" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
-                                ng-click="FavCtrl.saveFav(poi.ID)" ng-show="FavCtrl.checkifFav(poi.ID)"
-                        /></td>
-                            <td style="cursor: pointer;font-size: 17px; font-weight: bold" ng-click="FavCtrl.goTo(poi.ID)">{{poi.Name}}</td>
-                            <td>{{poi.Description}}</td>
-                            <td>{{poi.Rank}}%</td>
-                            <td>{{poi.CategoryID}}</td>
-                            <td>{{poi.UsersWatching}}</td>
-                            <td><img ng-style="{'height': '170px','width':'180px','cursor':'pointer'}" ng-click="FavCtrl.goTo(poi.ID)" ng-src="   {{poi.Picture}}"
-                                /></td>
-                            </tr>
-                        </tbody>
-                      </table>
+        <table ng-init="FavCtrl.getAllPoi()" class="table table-striped">
+                <thead>
+                        <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Favorite</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Desciption</th>
+                                <th scope="col">Rank</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Views</th>
+                                <th scope="col">Picture</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="poi in FavCtrl.getFav() | filter: {CategoryID: FavCtrl.getCatID(chooseFilter)} | orderBy:FavCtrl.sortValue:true">
+                                <th scope="row">{{FavCtrl.loc(poi.ID)}}</th>
+                                <td>
+                                        <img src="/assets/img/unlike.JPG" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
+                                                ng-click="FavCtrl.saveFav(poi.ID)" ng-show="!FavCtrl.checkifFav(poi.ID)" />
+                                        <img src="/assets/img/like.png" ng-if="$root.isConnected" ng-style="{'height': '30px','width':'40px','cursor':'pointer'}"
+                                                ng-click="FavCtrl.saveFav(poi.ID)" ng-show="FavCtrl.checkifFav(poi.ID)" />
+                                </td>
+                                <td style="cursor: pointer;font-size: 17px; font-weight: bold" ng-click="FavCtrl.goTo(poi.ID)">{{poi.Name}}</td>
+                                <td>{{poi.Description}}</td>
+                                <td>{{poi.Rank}}%</td>
+                                <td>{{poi.CategoryID}}</td>
+                                <td>{{poi.UsersWatching}}</td>
+                                <td>
+                                        <img ng-style="{'height': '170px','width':'180px','cursor':'pointer'}" ng-click="FavCtrl.goTo(poi.ID)"
+                                                ng-src="   {{poi.Picture}}" />
+                                </td>
+                        </tr>
+                </tbody>
+        </table>
 </center>

@@ -1,12 +1,14 @@
 <br/>
 <center ng-init="AllPoiCtr.init()">
         <div class="btn-toolbar">
+                <b>Filter By:</b>
                 <select ng-model="chooseFilter" name="filterCategory" ng-style="{'background-color':'#008CBA','font-size': '20px','color':'white'}">
                         <option value="">No-Filter</option>
-                        <option ng-repeat="x in AllPoiCtr.cats" >{{x.text}}</option>
+                        <option ng-repeat="x in AllPoiCtr.cats">{{x.text}}</option>
                 </select>
                 <button type="button" id="btnCancel" ng-click="AllPoiCtr.sortByRank()" class="btn btn-primary btn-sm">Sort By Rank</button>
-                <button ng-show="$root.isConnected" ng-hide="$root.localFav.length==0" class="btn btn-primary btn-sm" ng-click="AllPoiCtr.goFav()"> Favorits List ({{$root.localFav.length}})</button>
+                <button ng-show="$root.isConnected" ng-hide="$root.localFav.length==0" class="btn btn-primary btn-sm" ng-click="AllPoiCtr.goFav()">
+                Favorits List ({{$root.localFav.length}})</button>
         </div>
 
         <br/>
