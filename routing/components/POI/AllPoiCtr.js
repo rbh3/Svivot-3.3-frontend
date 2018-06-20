@@ -3,7 +3,6 @@ angular.module('citiesApp')
         let self = this;
         let serverUrl = 'http://localhost:3000/'
         self.PicSelected="/assets/img/unlike.JPG"
-        $rootScope.localFav=[];
         self.chooseFilter="No-Filter"
 
         self.cats = [
@@ -19,21 +18,6 @@ angular.module('citiesApp')
 
         self.init=function(){
             checkToken.check();
-            
-            if($rootScope.isConnected==true)
-            {
-                $http.get(serverUrl + "POI/reg/FavoritesByUsername/0")
-                .then(function (response) {
-                    //First function handles success
-                    temp = response.data;
-                    for(var i=0; i<temp.length;i++)
-                        $rootScope.localFav.push(temp[i].ID);
-                }, function (response) {
-                    self.POI = response.data;
-                    //Second function handles error
-                    // self.reg.content = "Something went wrong";
-                });
-            }
         }
       
         self.getAllPoi = function (id) {
@@ -58,10 +42,12 @@ angular.module('citiesApp')
         }
 
         self.checkifFav=function(name){
-            if($rootScope.localFav.includes(name))
+            if($rootScope.localFav.length>0){
+            if($rootScope.localFav.filter(value=> value.ID==name.ID).length > 0)
                 return true;
             else
                 return false;
+            }
         }
 
         self.getCatName=function(name){
@@ -76,9 +62,9 @@ angular.module('citiesApp')
         }
 
         self.saveFav=function(name){
-           if($rootScope.localFav.includes(name))
+            if($rootScope.localFav.filter(value=> value.ID==name.ID).length > 0)
            {
-                let i=$rootScope.localFav.indexOf(name);
+                let i=$rootScope.localFav.findIndex(x => x.ID === name.ID) 
                 if(i>-1)
                     $rootScope.localFav.splice(i,1);
            }
