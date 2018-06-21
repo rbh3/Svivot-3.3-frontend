@@ -45,7 +45,7 @@ angular.module('citiesApp')
 
     .service('bringFavorites', ['$http', '$rootScope', function ($http, $rootScope) {
         this.importeFav = function (){
-        if ($rootScope.isConnected == true && $rootScope.localFav.length==0) {
+        if ($rootScope.isConnected === true && $rootScope.localFav.length===0) {
             $http.get("http://localhost:3000/POI/reg/FavoritesByUsername/0")
                 .then(function (response) {
                     //First function handles success
@@ -53,6 +53,9 @@ angular.module('citiesApp')
                         return;
                     temp = response.data;
                     for (var i = 0; i < temp.length; i++){
+                        let ind=$rootScope.localFav.findIndex(x => x.ID === temp[i].ID) 
+                        if(ind>-1)
+                            continue;
                         $rootScope.localFav.push(temp[i]);
                     }
                 }, function (response) {
@@ -64,6 +67,10 @@ angular.module('citiesApp')
 
         console.log("Favorites Import Completed")
             }
+    }
+    this.reset=function()
+    {
+        $rootScope.localFav=[]
     }
     }])
 

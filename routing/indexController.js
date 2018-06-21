@@ -1,5 +1,5 @@
 angular.module('citiesApp')
-    .controller('indexController',['$rootScope','localStorageModel','setHeadersToken', function ($rootScope,localStorageModel,setHeadersToken) {
+    .controller('indexController',['$rootScope','localStorageModel','setHeadersToken','bringFavorites', function ($rootScope,localStorageModel,setHeadersToken,bringFavorites) {
 
         self = this;
         $rootScope.userName="Guest"
@@ -9,9 +9,10 @@ angular.module('citiesApp')
         self.reset=function(){
            $rootScope.userName="Guest"
            $rootScope.isConnected=false
+           $rootScope.localFav=[];
+           bringFavorites.reset();
            localStorageModel.removeToken('token')
            setHeadersToken.set("")
-           $rootScope.localFav=[];
         }
 
         var xmlhttp = new XMLHttpRequest();
